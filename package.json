@@ -1,0 +1,24 @@
+{
+  "name": "download-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@distube/ytdl-core": "^4.14.4",
+    "@tobyg74/tiktok-api-dl": "^1.2.0",
+    "axios": "^1.7.7",
+    "instagram-downloader": "^0.0.0",
+    "instagram-scraper": "^1.0.6",
+    "nayan-media-downloader": "^2.6.2",
+    "node-telegram-bot-api": "^0.66.0",
+    "node-tiklydown": "^2.0.0-lts",
+    "rahad-all-downloader": "^2.1.16",
+    "ytdl-core": "^4.11.5"
+  }
+}

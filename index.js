@@ -47,7 +47,7 @@ bot.onText(/https:\/\/vt.tiktok.com\/.*/, async (msg) => {
       method: "GET",
       responseType: "stream",
     });
-      await bot.sendVideo(chatId, URL.data.video).catch((error) => {
+      await bot.sendVideo(chatId, videoStream.data).catch((error) => {
         bot.sendMessage(chatId, "Videoni yuborishda xatolik yuz berdi.");
         console.error(error);
     });

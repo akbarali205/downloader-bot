@@ -57,9 +57,11 @@ bot.onText(/https:\/\/vt.tiktok.com\/.*/, async (msg) => {
   }
 });
 
-bot.onText('/https:\/\/youtu.be\/.*/', async (msg) => {
+bot.onText(/https:\/\/youtu.be\/.*/, async (msg) => {
   const chatId = msg.chat.id;
   const link = msg.text;
+  console.log('salom');
+  
 
   try {
     let URL = await ytdown(link);

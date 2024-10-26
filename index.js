@@ -71,7 +71,7 @@ bot.onText(/https:\/\/youtu.be\/.*/, async (msg) => {
       method: "GET",
       responseType: "stream",
     });
-    await bot.sendVideo(chatId, audioStream.data).catch((error) => {
+    await bot.sendAudio(chatId, audioStream.data).catch((error) => {
       bot.sendMessage(chatId, "Audioni yuborishda xatolik yuz berdi.");
       console.error(error)
     })

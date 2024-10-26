@@ -2,6 +2,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const axios = require("axios");
 const { instagram } = require("nayan-media-downloader");
 const { tikdown } = require("nayan-media-downloader");
+const { ytdown } = require("nayan-media-downloader")
 
 const token = "8154059770:AAEcRDb9261RdzTZ27M2ubGQFJYlOfUu2RE";
 const bot = new TelegramBot(token, { polling: true });
@@ -55,3 +56,34 @@ bot.onText(/https:\/\/vt.tiktok.com\/.*/, async (msg) => {
     bot.sendMessage(chatId, "Xatolik yuz berdi yoki videoni yuklab bo'lmadi.");
   }
 });
+
+bot.onText('/https:\/\/youtu.be\/.*/', async (msg) => {
+  const chatId = msg.chat.id;
+  const link = msg.text;
+
+  try {
+    let URL = await ytdown(link);
+    // console.log(URL);
+    const audioStream = await axios({
+      url: URL.data.audio,
+      method: "GET",
+      responseType: "stream",
+    });
+    await bot.sendVideo(chatId, audioStream.data).catch((error) => {
+      bot.sendMessage(chatId, "Audioni yuborishda xatolik yuz berdi.");
+      console.error(error)
+    })
+    const videoStream = await axios({
+      url: URL.data.video,
+      method: "GET",
+      responseType: "stream",
+    });
+      await bot.sendVideo(chatId, videoStream.data).catch((error) => {
+        bot.sendMessage(chatId, "Videoni yuborishda xatolik yuz berdi.");
+        console.error(error);
+    });
+
+  } catch (error) {
+    bot.sendMessage(chatId, "Xatolik yuz berdi yoki videoni yuklab bo'lmadi.");
+  }
+})
